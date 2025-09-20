@@ -1,1 +1,12 @@
 
+cff-version: 1.2.0
+title: "Burst-Informed AE Framework for Explainable Failure Diagnosis in Milling Machines"
+message: "If you use this repository, please cite it as below."
+authors:
+  - family-names: "Umar"
+    given-names: "Muhammad"
+    affiliation: "Your University / Institute"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+version: "1.0.0"
+date-released: 2025-09-20
+url: "https://github.com/<your-username>/burst-informed-ae-framework"
