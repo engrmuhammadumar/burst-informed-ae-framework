@@ -3,7 +3,6 @@
 This repository provides the official implementation of our paper:
 
 **“Burst-Informed Acoustic Emission Framework for Explainable Failure Diagnosis in Milling Machines”**  
-*(Under review at Engineering Failure Analysis)*
 
 ---
 
