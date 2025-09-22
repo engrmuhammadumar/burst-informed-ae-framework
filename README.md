@@ -6,7 +6,7 @@ This repository provides the official implementation of our paper:
 
 ---
 
-## 🔹 Overview
+## Overview
 
 Tool wear and failure in milling operations can be challenging to diagnose due to noise, burst transients, and the multi-domain nature of acoustic emission (AE) signals.  
 This framework introduces a **burst-aware, explainable AE-based diagnostic pipeline** that integrates:
@@ -24,9 +24,9 @@ The framework provides **robust, reproducible, and interpretable failure diagnos
 **Files**
 
 
-signal_processing.py → Burst-informed preprocessing (wavelet denoising + burst segmentation).
+**signal_processing.py → Burst-informed preprocessing (wavelet denoising + burst segmentation).
 
-feature_engineering.py → Multi-domain feature extraction (time, frequency, time–frequency, higher-order stats, bursts).
+**feature_engineering.py → Multi-domain feature extraction (time, frequency, time–frequency, higher-order stats, bursts).
 
 features.py → Utility functions for feature handling.
 
