@@ -20,3 +20,24 @@ This framework introduces a **burst-aware, explainable AE-based diagnostic pipel
 
 The framework provides **robust, reproducible, and interpretable failure diagnosis** across tool conditions.
 
+
+**Files**
+
+
+signal_processing.py → Burst-informed preprocessing (wavelet denoising + burst segmentation).
+
+feature_engineering.py → Multi-domain feature extraction (time, frequency, time–frequency, higher-order stats, bursts).
+
+features.py → Utility functions for feature handling.
+
+model_ensemble.py → Ensemble learning (TabNet, XGBoost, SVM + RF meta-classifier).
+
+interpretability.py → Explainability using SHAP and LIME.
+
+evaluate.py → Performance metrics (Accuracy, F1, AUC, Confusion Matrix).
+
+train.py → End-to-end model training script.
+
+main.py → Entry point that ties everything together.
+
+config.yaml → Configuration file (paths, parameters, model settings).
