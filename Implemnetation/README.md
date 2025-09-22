@@ -7,5 +7,6 @@ Paper-aligned pipeline:
 4) **Performance-weighted ensemble**: TabNet, XGBoost, SVM → RF meta-classifier  
 5) **Metrics & Explainability**: Accuracy, F1, AUC, confusion matrix, SHAP
 
-## Data
-`data/signals.csv` with:
+
+
+
