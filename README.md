@@ -14,9 +14,9 @@ This framework introduces a **burst-aware, explainable AE-based diagnostic pipel
 1. **Hybrid Wavelet Denoising** – adaptive soft–hard shrinkage to remove high-frequency noise  
 2. **Burst-Informed Segmentation** – energy-based detection of bursts and stationary cutting intervals  
 3. **Multi-Domain Feature Extraction** – time, frequency, time–frequency (CWT), higher-order statistics, and burst-specific features  
-4. **Hybrid Feature Selection** – mutual information + XGBoost importance with MinMax scaling  
-5. **Performance-Weighted Ensemble** – base learners (TabNet, XGBoost, SVM) combined via Random Forest meta-classifier  
-6. **Explainability Module** – SHAP-based interpretation of features and ensemble contributions  
+4. **Hybrid Feature Selection** 
+5. **Performance-Weighted Ensemble** 
+6. **Explainability Module**
 
 The framework provides **robust, reproducible, and interpretable failure diagnosis** across tool conditions.
 
