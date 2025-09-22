@@ -24,9 +24,9 @@ The framework provides **robust, reproducible, and interpretable failure diagnos
 **Files**
 
 
-**signal_processing.py → Burst-informed preprocessing (wavelet denoising + burst segmentation).
+signal_processing.py → Burst-informed preprocessing (wavelet denoising + burst segmentation).
 
-**feature_engineering.py → Multi-domain feature extraction (time, frequency, time–frequency, higher-order stats, bursts).
+feature_engineering.py → Multi-domain feature extraction (time, frequency, time–frequency, higher-order stats, bursts).
 
 features.py → Utility functions for feature handling.
 
