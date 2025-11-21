@@ -1,43 +1,82 @@
 # Burst-Informed Acoustic Emission Framework for Explainable Failure Diagnosis in Milling Machines
 
-This repository provides the official implementation of our paper:
+This repository contains the official implementation of the paper:
 
-**“Burst-Informed Acoustic Emission Framework for Explainable Failure Diagnosis in Milling Machines”**  
+> **Burst-Informed Acoustic Emission Framework for Explainable Failure Diagnosis in Milling Machines**  
+> Engineering Failure Analysis, Elsevier, 2025.  
+
+The framework provides a burst-informed, interpretable diagnostic pipeline for milling tools using acoustic emission (AE) signals. It combines burst-preserving signal processing, multi-domain feature extraction, and a performance-weighted stacking ensemble to deliver accurate and explainable fault diagnosis.
 
 ---
 
-## Overview
+## 1. Project summary
 
-Tool wear and failure in milling operations can be challenging to diagnose due to noise, burst transients, and the multi-domain nature of acoustic emission (AE) signals.  
-This framework introduces a **burst-aware, explainable AE-based diagnostic pipeline** that integrates:
+Tool wear and fracture in milling operations generate high-frequency AE bursts that are easily masked by noise and stationary cutting activity. This framework:
 
-1. **Hybrid Wavelet Denoising** – adaptive soft–hard shrinkage to remove high-frequency noise  
-2. **Burst-Informed Segmentation** – energy-based detection of bursts and stationary cutting intervals  
-3. **Multi-Domain Feature Extraction** – time, frequency, time–frequency (CWT), higher-order statistics, and burst-specific features  
-4. **Hybrid Feature Selection** 
-5. **Performance-Weighted Ensemble** 
-6. **Explainability Module**
+- isolates fracture-related bursts while suppressing background noise,  
+- extracts physically meaningful features across multiple domains,  
+- learns a robust mapping from AE behaviour to fault classes, and  
+- explains the final predictions using feature-level attribution.
 
-The framework provides **robust, reproducible, and interpretable failure diagnosis** across tool conditions.
+The method has been validated on a precision milling test rig and an independent public AE dataset, showing high diagnostic accuracy and strong generalisation.
 
+---
 
-**Files**
+## 2. Method overview
 
+The complete pipeline (BIWD-BAAFS-PWSE) consists of:
 
-signal_processing.py → Burst-informed preprocessing (wavelet denoising + burst segmentation).
+1. **Burst-Informed Wavelet Denoising (BIWD)**  
+   - Hybrid soft–hard wavelet thresholding guided by local energy and noise statistics.  
+   - Preserves short, high-energy bursts linked to crack initiation and tool damage.
 
-feature_engineering.py → Multi-domain feature extraction (time, frequency, time–frequency, higher-order stats, bursts).
+2. **Burst-Aware Adaptive Frame Segmentation (BAAFS)**  
+   - Energy-ratio-based burst detection and adaptive framing.  
+   - Produces burst-centred segments while discarding non-informative regions.
 
-features.py → Utility functions for feature handling.
+3. **Multi-Domain Feature Extraction**  
+   - Time-domain (TD): RMS, MAV, skewness, kurtosis, crest factor, etc.  
+   - Frequency-domain (FD): dominant frequency, PSD, spectral entropy, THD, etc.  
+   - Time–frequency (TFD): CWT-based descriptors, envelope area, wavelet energy.  
+   - Higher-order statistics (HOS): higher-order moments and cumulants.  
+   - Burst-specific: burst energy, peak amplitude, inter-burst interval, rise time, burst rate.
 
-model_ensemble.py → Ensemble learning (TabNet, XGBoost, SVM + RF meta-classifier).
+4. **Feature Engineering**  
+   - Filter step using mutual information and correlation analysis.  
+   - Embedded importance from ensemble learners with repeated cross-validation.  
+   - Min–max scaling to obtain a compact, well-conditioned feature set.
 
-interpretability.py → Explainability using SHAP and LIME.
+5. **Performance-Weighted Stacked Ensemble (PWSE)**  
+   - Base learners: **TabNet**, **XGBoost**, and **SVM**.  
+   - Meta-learner: **Random Forest** operating on class-probability outputs.  
+   - Base models are weighted according to validation performance.
 
-evaluate.py → Performance metrics (Accuracy, F1, AUC, Confusion Matrix).
+6. **Explainability and Evaluation**  
+   - Global and local explanations using **SHAP** and **LIME**.  
+   - Standard metrics: Accuracy, Precision, Recall, F1-score, AUC, MCC, latency.  
 
-train.py → End-to-end model training script.
+---
 
-main.py → Entry point that ties everything together.
+## 3. Repository structure
 
-config.yaml → Configuration file (paths, parameters, model settings).
+The repository is organised as follows:
+
+```text
+burst-informed-ae-framework/
+│
+├─ Implemnetation/                 # Core implementation scripts (main pipeline)
+├─ additional experiments/         # Cross-speed and robustness experiments
+├─ comparisons/                    # Baseline models and comparative studies
+├─ results/                        # Stored metrics, figures, and tables
+│
+├─ signal_processing.py            # BIWD denoising + burst-aware segmentation
+├─ feature_engineering.py          # Multi-domain feature extraction and selection
+├─ features.py                     # Utility functions for feature handling
+├─ model_ensemble.py               # TabNet, XGBoost, SVM + RF meta-classifier
+├─ interpretability.py             # SHAP and LIME analysis utilities
+├─ evaluate.py                     # Metric calculations and plotting
+├─ train.py                        # End-to-end training script
+├─ main.py                         # Entry point for full pipeline execution
+├─ config.yaml                     # Configuration (paths, parameters, model options)
+│
+└─ README.md                       # Project description (this file)
